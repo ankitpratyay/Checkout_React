@@ -39,7 +39,7 @@ export default function Carts() {
                       <td>
                         <p>{element.rname}</p>
                         <p>Address :{element.address}</p>
-                        <p>Price: $ {element.price}</p>
+                        <p>Price: $ {element.price * element.qnty}</p>
                         <p>Quantity: {element.qnty}</p>
                         <p
                           style={{

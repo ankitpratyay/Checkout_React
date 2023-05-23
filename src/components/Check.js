@@ -17,6 +17,7 @@ export default function Check() {
     expiry:"",
   };
   const [customer, setCustomer] = useState(initialState);
+  const [price,setPrice]=useState(0)
   const getData = useSelector((store) => store.rootReducer.cartReducer.carts);
   const dispatch= useDispatch()
   const navigate = useNavigate();
@@ -39,7 +40,15 @@ export default function Check() {
   {
     navigation()
   }
+  total();
  },[getData])
+ const total=()=>{
+  let temp=0;
+  getData.map((ele)=>{
+    temp=temp+ele.price
+  })
+  setPrice(temp)
+ }
   return (
     <div className="container">
 
@@ -85,7 +94,7 @@ export default function Check() {
                     </tr>
                   );
                 })}
-                <p>Total :$ 300 </p>
+                <p>Total :$ {price} </p>
               </tbody>
             </table>
           </div>
