@@ -45,7 +45,7 @@ export default function Check() {
  const total=()=>{
   let temp=0;
   getData.map((ele)=>{
-    temp=temp+ele.price
+    temp=temp+(ele.price * ele.qnty)
   })
   setPrice(temp)
  }
@@ -78,7 +78,7 @@ export default function Check() {
                       </td>
                       <td>
                         <p>{element.rname}</p>
-                        <p>Price: $ {element.price}</p>
+                        <p>Price: $ {element.price * element.qnty}</p>
                         <p>Quantity: {element.qnty}</p>
                         <p
                           style={{
