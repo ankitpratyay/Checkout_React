@@ -9,12 +9,13 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         carts: [...state.carts, action.payload],
       }; */
-      const IteamIndex = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
+      let newState=JSON.parse(JSON.stringify(state))
+      const IteamIndex = newState.carts.findIndex((iteam)=> iteam.id === action.payload.id);
       if(IteamIndex >= 0){
-          state.carts[IteamIndex].qnty +=1
+          newState.carts[IteamIndex].qnty +=1
           return {
-              ...state,
-              carts:[...state.carts]
+              ...newState,
+              carts:[...newState.carts]
           }
       }else{
           const temp = {...action.payload,qnty:1}
