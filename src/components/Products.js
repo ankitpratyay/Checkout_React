@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import CardsData from "./CardsData";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ADD } from "../redux/action/Action";
 export default function Products() {
   const [data, setData] = useState(CardsData);
 
   const dispatch = useDispatch();
-  const getdata = useSelector((store) => store.rootReducer);
+  //const getdata = useSelector((store) => store.rootReducer);
   const send = (element) => {
     dispatch(ADD(element));
   };

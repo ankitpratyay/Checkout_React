@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import download from '../image/download (1).jpg'
 import { ADD, DLT, REMOVE } from "../redux/action/Action";
-import { element } from "prop-types";
 
 
 export default function Carts() {
