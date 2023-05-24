@@ -2,15 +2,22 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import download from '../image/download (1).jpg'
-import { DLT } from "../redux/action/Action";
+import { ADD, DLT, REMOVE } from "../redux/action/Action";
+import { element } from "prop-types";
 
 
 export default function Carts() {
   const getdata = useSelector((store) => store.rootReducer.cartReducer.carts);
   const dispatch = useDispatch()
+  const send = (element) => {
+    dispatch(ADD(element));
+  };
 
   const dlt=(id)=>{
     dispatch(DLT(id))
+  }
+  const remove=(element)=>{
+    dispatch(REMOVE(element))
   }
   return (
     <div className="container-fluid mt-2">
@@ -40,7 +47,12 @@ export default function Carts() {
                         <p>{element.rname}</p>
                         <p>Address :{element.address}</p>
                         <p>Price: $ {element.price}</p>
-                        <p>Quantity: {element.qnty}</p>
+                        
+                        <div className="mt-4 d-flex justify-content-between align-items-center" style={{width:100,cursor:"pointer",background:"#ddd",color:"#111"}}>
+                          <span style={{fontSize:24}} onClick={()=>{remove(element)}} >-</span>
+                          <span style={{fontSize:22}}>{element.qnty}</span>
+                          <span style={{fontSize:24}} onClick={()=>send(element)}>+</span>
+                        </div>
                         <p
                           style={{
                             color: "red",

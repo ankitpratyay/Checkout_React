@@ -8,17 +8,15 @@ export default function Products() {
   const dispatch = useDispatch();
   const getdata = useSelector((store) => store.rootReducer);
   const send = (element) => {
-    console.log(element)
     dispatch(ADD(element));
-    console.log(getdata);
   };
-  console.log(getdata);
   return (
     <div className="container mt-3">
       <div className="row d-flex justify-content-center align-items-center">
         {data.map((ele, id) => {
           return (
-            <div kry={id}
+            <div
+              kry={id}
               className="card mx-2 mt-4 card_style"
               style={{ width: "22rem", border: "none" }}
               key={id}

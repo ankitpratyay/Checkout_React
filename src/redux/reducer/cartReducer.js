@@ -32,6 +32,27 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             ...state,
             carts:data
         }
+        case "RMV_ONE":
+          const dltItem= JSON.parse(JSON.stringify(state))
+          const IteamIndex_dec = dltItem.carts.findIndex((iteam)=> iteam.id === action.payload.id);
+ 
+          if(state.carts[IteamIndex_dec].qnty >= 1){
+              const dltiteams = dltItem.carts[IteamIndex_dec].qnty -= 1
+              console.log([...state.carts,dltiteams]);
+
+              return {
+                  ...dltItem,
+                  carts:[...dltItem.carts]
+              }
+          }else if(state.carts[IteamIndex_dec].qnty === 1 ){
+              const data = state.carts.filter((el)=>el.id !== action.payload);
+
+              return {
+                  ...state,
+                  carts:data
+              }
+          }
+
 
     default:
       return state;

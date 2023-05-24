@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { DLT } from "../redux/action/Action";
+import { ADD, DLT, REMOVE } from "../redux/action/Action";
 
 export default function Check() {
   const initialState = {
@@ -47,6 +47,12 @@ export default function Check() {
     });
     setPrice(temp);
   };
+  const send = (element) => {
+    dispatch(ADD(element));
+  };
+  const remove=(element)=>{
+    dispatch(REMOVE(element))
+  }
   return (
     <div className="container">
       <div className="row d-flex align-item-center">
@@ -77,6 +83,11 @@ export default function Check() {
                       <p>{element.rname}</p>
                       <p>Price: $ {element.price}</p>
                       <p>Quantity: {element.qnty}</p>
+                      <div className="mt-4 d-flex justify-content-between align-items-center" style={{width:100,cursor:"pointer",background:"#ddd",color:"#111"}}>
+                      <span style={{fontSize:24}} onClick={()=>{remove(element)}} >-</span>
+                      <span style={{fontSize:22}}>{element.qnty}</span>
+                      <span style={{fontSize:24}} onClick={()=>send(element)}>+</span>
+                    </div>
                       <p
                         style={{
                           color: "red",
