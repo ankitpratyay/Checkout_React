@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   carts: [],
+  address: [],
 };
 
 export const cartReducer = (state = INITIAL_STATE, action) => {
@@ -39,7 +40,7 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
       );
 
       if (state.carts[IteamIndex_dec].qnty > 1) {
-        dltItem.carts[IteamIndex_dec].qnty -= 1
+        dltItem.carts[IteamIndex_dec].qnty -= 1;
 
         return {
           ...dltItem,
@@ -53,7 +54,16 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         };
       }
       break;
-
+    case "COMPLETE_PAYMENT":
+      return {
+        carts:[],
+        address:[]
+      };
+    case "ADD_ADDRESS":
+      return {
+        ...state,
+        address: [...state.address, action.payload],
+      };
     default:
       return state;
   }

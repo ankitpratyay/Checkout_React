@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
-
- 
+  const [count, setCount] = useState();
+  const getData = useSelector((store) => store.rootReducer.cartReducer.carts);
+  useEffect(() => {
+    if (getData.length > 0) {
+      setCount(getData.length);
+    }
+    else if(getData.length === 0)
+    {
+      setCount(undefined)
+    }
+  }, [getData]);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-white shadow-sm">
       <div className="container">
@@ -28,12 +38,13 @@ export default function Header() {
                 Home
               </NavLink>
             </li>
-           
           </ul>
-            
-            <NavLink to="/cart" className="btn btn-outline-dark ms2">
-            <i className="fa-solid fa-cart-shopping me-1"></i></NavLink>
-            <span className=" translate-middle badge rounded-pill bg-danger">
+
+          <NavLink to="/cart" className="btn btn-outline-dark ms2">
+            <i className="fa-solid fa-cart-shopping me-1"></i>
+          </NavLink>
+          <span className=" translate-middle badge rounded-pill bg-danger">
+            {count}
           </span>
         </div>
       </div>

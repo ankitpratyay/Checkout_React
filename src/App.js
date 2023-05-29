@@ -6,6 +6,7 @@ import Products from "./components/Products";
 import Footer from "./components/Footer";
 import Carts from "./components/Carts";
 import Success from "./components/Success";
+import Review from "./components/Review";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/" element={<Products />} />
         <Route exact path="/cart" element={<Carts />} />
         <Route exact path="/checkout" element={<Check />} />
+        <Route exact path="/review" element={<Review />} />
         <Route exact path="/success" element={<Success />} />
       </Routes>
       <Footer />

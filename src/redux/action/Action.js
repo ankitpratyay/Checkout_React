@@ -16,3 +16,15 @@ export const REMOVE = (iteam) => {
       payload: iteam
   }
 }
+export const ADDRESS = (iteam)=>{
+  return{
+    type : "ADD_ADDRESS",
+    payload: iteam
+  }
+}
+
+export const COMPPAYMENT=()=>{
+  return{
+    type: "COMPLETE_PAYMENT"
+  }
+}

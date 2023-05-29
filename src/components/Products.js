@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardsData from "./CardsData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ADD } from "../redux/action/Action";
 export default function Products() {
   const [data, setData] = useState(CardsData);
 
   const dispatch = useDispatch();
-  //const getdata = useSelector((store) => store.rootReducer);
+  const getData = useSelector((store) => store.rootReducer.cartReducer.carts);
   const send = (element) => {
     dispatch(ADD(element));
   };
@@ -31,7 +31,18 @@ export default function Products() {
                 <h5 className="card-title">{ele.rname}</h5>
                 <p className="card-text">Price : $ {ele.price}</p>
                 <div className="button_div d-flex justify-content-center ">
-                  <button
+                {
+                  getData.some(p=>p.id===ele.id)?(
+                    <button
+                    type="button"
+                    onClick={() => send(ele)}
+                    className="btn btn-outline-success col-lg-12"
+                    style={{ cursor: "pointer" }}
+                  >
+                    ADDED
+                  </button>
+                  ):(
+                    <button
                     type="button"
                     onClick={() => send(ele)}
                     className="btn btn-outline-secondary col-lg-12"
@@ -39,6 +50,8 @@ export default function Products() {
                   >
                     Add to Cart
                   </button>
+                  )
+                }
                 </div>
               </div>
             </div>
